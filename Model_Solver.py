@@ -1,11 +1,13 @@
+# CODE CREATED BY SEANSOM FOR EEE 158 WEEK 4 EXERCISE
 import sys, os
 from matplotlib import pyplot as plt
 from statistics import mean
 import numpy as np
 import pandas as pd
 
-# Sample txt files: EEE158_Week4_InputData_BELLEN_SYZ1.txt, EEE158_Week4_InputData_SOMBRITO_SYZ1.txt
-data_txt_name = "EEE158_Week4_InputData_SOMBRITO_SYZ1.txt"
+# Sample txt files: 158_Week4_InputData_SOM_SYZ1.txt
+data_txt_name = "158_Week4_InputData_SOM_SYZ1.txt"
+
 step_input = 3
 
 os.chdir(os.path.dirname(sys.argv[0]))
@@ -13,17 +15,23 @@ os.chdir(os.path.dirname(sys.argv[0]))
 data = pd.read_csv(data_txt_name, header=None)
 data.columns = ["points"]
 
+# Block Diagram: V_in(s) => K/(s + α) => V_temp(s)
+# note: Derivation of transfer function K/(s + α) is not shown
 
 
 # set initial value of V_temp
 init_v_temp = data["points"].values[0]
 
+# initialize x-axis (time in minutes)
 time = np.arange(0, len(data["points"]))
 
 # turn into LTI system by subtracting V_temp(0) and shifting the V_temp readings
 v_temp = data["points"].values - init_v_temp
+
+
 # Assume that system reaches steady state at t = total_time_readings - num_of_steady_state_readings
 num_of_steady_state_readings = 1
+
 v_steadystate = np.mean(v_temp[-num_of_steady_state_readings:])
 
 # let β = K/α
@@ -59,7 +67,6 @@ v_temp_model = v_temp_model + init_v_temp
 
 
 
-
 # plot the Actual and Model V_temp
 fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1)
 
@@ -84,6 +91,8 @@ ax2.set_ylabel('Error (%)')
 
 ax2.grid(b=True)
 
+
+
 # Print out constant values used in the model
 print(f'v_steadystate = {v_steadystate + init_v_temp}')
 print(f'β = {round(β, 6)}')
@@ -91,7 +100,7 @@ print(f'α = {round(α_mean, 6)}')
 print(f'K = {round(K, 6)}')
 
 print()
-print(f'Model: V_temp(t) = [({round(3 * β, 6)}) * (1 - e ^ (-{round(α_mean, 6)} t)) + 2.74] u(t)')
+print(f'Model: V_temp(t) = [({round(step_input * β, 6)}) * (1 - e ^ (-{round(α_mean, 6)} t)) + 2.74] u(t)')
 
 plt.tight_layout()
 plt.show()
