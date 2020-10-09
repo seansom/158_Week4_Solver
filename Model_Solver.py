@@ -1,7 +1,6 @@
 # CODE CREATED BY SEANSOM FOR EEE 158 WEEK 4 EXERCISE
 import sys, os
 from matplotlib import pyplot as plt
-from statistics import mean
 import numpy as np
 import pandas as pd
 
