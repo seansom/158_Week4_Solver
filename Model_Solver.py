@@ -91,7 +91,7 @@ print(f'α = {round(α_mean, 6)}')
 print(f'K = {round(K, 6)}')
 
 print()
-print(f'Model: V_temp(t) = ({round(β, 6)}) * (1 - e ^ (-{round(α_mean, 6)} t))')
+print(f'Model: V_temp(t) = [({round(3 * β, 6)}) * (1 - e ^ (-{round(α_mean, 6)} t)) + 2.74] u(t)')
 
 plt.tight_layout()
 plt.show()
