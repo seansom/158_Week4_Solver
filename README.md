@@ -1,4 +1,4 @@
-# 158_Week4_Graph_Generator
+# 158_Week4_Solver
 
 Instructions:
 - Install python first before using this application.
