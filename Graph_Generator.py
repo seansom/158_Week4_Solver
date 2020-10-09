@@ -37,6 +37,7 @@ ax2.set_title('Bulb-Ambient Temperature Difference')
 ax2.set_xlabel('Time (min)')
 ax2.set_ylabel('Temperature (C°)')
 
+ax2.legend()
 ax2.grid(b=True)
 
 plt.tight_layout()
