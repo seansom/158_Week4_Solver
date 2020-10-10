@@ -19,14 +19,16 @@ data.columns = ["points"]
 
 
 # set initial value of V_temp
-init_v_temp = data["points"].values[0]
+init_v_temp = 2.5
 
-# initialize x-axis (time in minutes)
-time = np.arange(0, len(data["points"]))
 
 # turn into LTI system by subtracting V_temp(0) and shifting the V_temp readings
-v_temp = data["points"].values - init_v_temp
+v_temp = data["points"].values
+v_temp = np.insert(v_temp, 0, init_v_temp)
+v_temp = v_temp - init_v_temp
 
+# initialize x-axis (time in minutes)
+time = np.arange(0, len(v_temp))
 
 # Assume that system reaches steady state at t = total_time_readings - num_of_steady_state_readings
 num_of_steady_state_readings = 1
