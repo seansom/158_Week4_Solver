@@ -4,17 +4,19 @@ import numpy as np
 import pandas as pd
 
 data_foldername = "158_Week3_Graph_Generator_data"
-data_txt_name = "EEE158_Week4_InputData_SOMBRITO_SYZ1.txt"
+data_txt_name = "158_Week4_InputData_SOM_SYZ1.txt"
 
 os.chdir(os.path.dirname(sys.argv[0]))
 
 data = pd.read_csv(data_txt_name, header=None)
 data.columns = ["points"]
 
-indices = range(len(data["points"]))
+indices = range(len(data["points"]) + 1)
 
 ambient_temps = np.repeat(25, len(indices)) 
-bulb_temps = data["points"] * 10
+bulb_temps = data["points"].values
+bulb_temps = np.insert(bulb_temps, 0, 2.5)
+bulb_temps = bulb_temps * 10
 
 
 fig, (ax1, ax2) = plt.subplots(nrows=2, ncols=1)
