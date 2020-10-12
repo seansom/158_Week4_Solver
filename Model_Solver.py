@@ -18,13 +18,9 @@ data.columns = ["points"]
 # note: Derivation of transfer function K/(s + α) is not shown
 
 
-# set initial value of V_temp
-init_v_temp = 2.5
-
-
 # turn into LTI system by subtracting V_temp(0) and shifting the V_temp readings
 v_temp = data["points"].values
-v_temp = np.insert(v_temp, 0, init_v_temp)
+init_v_temp = v_temp[0]
 v_temp = v_temp - init_v_temp
 
 # initialize x-axis (time in minutes)

@@ -11,11 +11,12 @@ os.chdir(os.path.dirname(sys.argv[0]))
 data = pd.read_csv(data_txt_name, header=None)
 data.columns = ["points"]
 
-indices = range(len(data["points"]) + 1)
+indices = range(len(data["points"]))
 
-ambient_temps = np.repeat(25, len(indices)) 
+init_v_temp = data["points"][0]
+
+ambient_temps = np.repeat(init_v_temp * 10, len(indices)) 
 bulb_temps = data["points"].values
-bulb_temps = np.insert(bulb_temps, 0, 2.5)
 bulb_temps = bulb_temps * 10
 
 
