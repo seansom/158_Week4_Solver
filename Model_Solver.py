@@ -47,7 +47,8 @@ for i in range(len(mask)):
 
 
 # get the mean α that will be used to model the system
-α_mean = np.mean(possible_α_values)
+α_mean = 0.2
+#np.mean(possible_α_values)
 
 
 # solve for K for model specification
